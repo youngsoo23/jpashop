@@ -38,4 +38,8 @@ public class Order {
         orderItem.setOrder(this);
     }
 
+    @OneToOne
+    @JoinColumn(name ="delivery_id")
+    private Delivery delivery;
+
 }
