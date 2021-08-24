@@ -20,7 +20,7 @@ public class Order {
 
 //    @Column(name = "member_id") // 관계형 디비에 맞춘 설정
 //    private Long memeberId;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -30,7 +30,7 @@ public class Order {
     private OrderStatus status;
 
     //양방향 예제(orderItem과)
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     public void addOrderItem(OrderItem orderItem){
@@ -38,7 +38,7 @@ public class Order {
         orderItem.setOrder(this);
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name ="delivery_id")
     private Delivery delivery;
 
