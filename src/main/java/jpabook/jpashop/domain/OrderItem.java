@@ -3,10 +3,7 @@ package jpabook.jpashop.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -17,11 +14,20 @@ public class OrderItem {
     @Column(name = "order_item_id")
     private Long id;
 
-    @Column(name = "order_id")
-    private Long orderId;
+//    @Column(name = "order_id")
+//    private Long orderId;
+//
+//    @Column(name = "item_id")
+//    private Long ItemId;
 
-    @Column(name = "item_id")
-    private Long ItemId;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
+
 
     @Column(name="order_price")
     private int orderPrice;
