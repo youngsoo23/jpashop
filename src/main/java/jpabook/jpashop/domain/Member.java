@@ -17,11 +17,14 @@ public class Member {
 
     private String name;
 
-    private String city;
+//    private String city;
+//
+//    private String street;
+//
+//    private String zipcode;
 
-    private String street;
-
-    private String zipcode;
+    @Embedded
+    private Address address;
 
     //양방향 예제
     @OneToMany(mappedBy = "member")
